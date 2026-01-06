@@ -1,0 +1,43 @@
+{
+  "agent_name": "TA Encyclopedia Agent",
+  "agent_id": "695cee9ea45696ac999e3f2f",
+  "agent_purpose": "Comprehensive transactional analysis expert providing detailed explanations of TA concepts, theories, and applications",
+  "description": "Answers questions about ego states, transactions, games, scripts, life positions, and provides definitions, examples, historical context, and cross-references",
+  "response_schema": {
+    "status": "string (success|error)",
+    "result": {
+      "response": "string",
+      "action_taken": "string (optional)",
+      "data": "object (optional, any structured data)",
+      "suggestions": [
+        "string (optional)"
+      ]
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string (ISO)"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "response": "I've completed the task you requested",
+      "action_taken": "Processed the input and generated output",
+      "data": {
+        "key": "value"
+      },
+      "suggestions": [
+        "You might also want to try X"
+      ]
+    },
+    "metadata": {
+      "agent_name": "TA Encyclopedia Agent",
+      "timestamp": "2025-01-15T10:30:00Z"
+    }
+  },
+  "actual_test_response": {
+    "raw_text": "In Transactional Analysis (TA), ego states are fundamental psychological states that represent different patterns of thinking, feeling, and behaving. Developed by Eric Berne in the 1950s, the concept of ego states helps us understand how people interact and communicate.\n\nThere are three primary ego states:\n\n1. Parent Ego State\n- Consists of learned attitudes and behaviors from parental figures\n- Can be Nurturing (supportive, caring) or Critical (judgmental, controlling)\n- Characterized by phrases starting with \"You should...\" or \"Always...\"\n- Represents internalized rules and values learned in childhood\n\n2. Adult Ego State\n- Rational, logical, and data-driven\n- Makes decisions based on current information and objective analysis\n- Focuses on problem-solving and realistic assessment\n- Operates in the \"here and now\"\n- Processes information objectively without emotional contamination\n\n3. Child Ego State\n- Represents feelings, emotions, and behaviors from childhood\n- Can be:\n  - Adaptive Child (compliant, seeks approval)\n  - Free Child (creative, spontaneous, playful)\n  - Rebellious Child (resistant, defiant)\n- Characterized by emotional and spontaneous responses\n- Stores childhood memories and associated feelings\n\nKey Characteristics:\n- Ego states can shift quickly during interactions\n- People move between these states depending on context\n- Understanding ego states helps improve communication\n- Healthy interactions involve appropriate ego state engagement\n\nPractical Applications:\n- Therapy\n- Relationship counseling\n- Communication skills training\n- Leadership development\n\nBy recognizing and understanding these ego states, individuals can improve self-awareness, communication, and interpersonal relationships."
+  },
+  "test_timestamp": "2026-01-06T11:14:51.801342",
+  "test_passed": false
+}
