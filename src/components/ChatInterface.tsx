@@ -63,7 +63,13 @@ export default function ChatInterface({
                       : 'bg-gray-100 text-gray-900 rounded-bl-none border border-gray-200'
                   }`}
                 >
-                  <div className="text-sm whitespace-pre-wrap leading-relaxed">{message.content}</div>
+                  <div className="text-sm leading-relaxed space-y-2">
+                    {message.content.split('\n\n').map((paragraph, i) => (
+                      <div key={i} className="whitespace-pre-wrap">
+                        {paragraph}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}

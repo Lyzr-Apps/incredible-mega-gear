@@ -6,6 +6,7 @@ import Sidebar from '@/components/Sidebar'
 import ChatInterface from '@/components/ChatInterface'
 import TopicGrid from '@/components/TopicGrid'
 import Header from '@/components/Header'
+import Quiz from '@/components/Quiz'
 
 const AGENT_ID = '695cee9ea45696ac999e3f2f'
 
@@ -69,6 +70,7 @@ export default function HomePage() {
   >([])
   const [loading, setLoading] = useState(false)
   const [chatInput, setChatInput] = useState('')
+  const [quizOpen, setQuizOpen] = useState(false)
   const chatEndRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -120,13 +122,28 @@ export default function HomePage() {
       const data = await response.json()
 
       if (data.success) {
+        let content = ''
+
+        if (typeof data.response === 'string') {
+          content = data.response
+        } else if (data.response?.raw_text) {
+          content = data.response.raw_text
+        } else if (typeof data.response === 'object') {
+          // Extract readable text from response object
+          const responseText = data.response_text || data.text || data.answer || data.message || ''
+          if (responseText) {
+            content = responseText
+          } else {
+            content = JSON.stringify(data.response, null, 2)
+          }
+        } else {
+          content = String(data.response || '')
+        }
+
         const assistantMessage = {
           id: (Date.now() + 1).toString(),
           role: 'assistant' as const,
-          content:
-            typeof data.response === 'string'
-              ? data.response
-              : data.response?.raw_text || JSON.stringify(data.response),
+          content: content.trim(),
         }
         setChatMessages((prev) => [...prev, assistantMessage])
       } else {
@@ -157,6 +174,7 @@ export default function HomePage() {
         topics={TATopics}
         onTopicSelect={handleTopicClick}
         selectedTopic={selectedTopic}
+        onQuizOpen={() => setQuizOpen(true)}
       />
 
       <div className="flex-1 flex flex-col">
@@ -216,6 +234,8 @@ export default function HomePage() {
           )}
         </div>
       </div>
+
+      <Quiz open={quizOpen} onClose={() => setQuizOpen(false)} />
     </div>
   )
 }

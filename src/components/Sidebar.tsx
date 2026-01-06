@@ -1,6 +1,6 @@
 'use client'
 
-import { FiX, FiChevronRight } from 'react-icons/fi'
+import { FiX, FiChevronRight, FiAward } from 'react-icons/fi'
 import { useState } from 'react'
 
 interface Topic {
@@ -16,6 +16,7 @@ interface SidebarProps {
   topics: Topic[]
   onTopicSelect: (topicId: string) => void
   selectedTopic: string | null
+  onQuizOpen?: () => void
 }
 
 const topicGroups = [
@@ -43,6 +44,7 @@ export default function Sidebar({
   topics,
   onTopicSelect,
   selectedTopic,
+  onQuizOpen,
 }: SidebarProps) {
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(
     new Set(['Core Concepts', 'Patterns & Dynamics'])
@@ -127,10 +129,19 @@ export default function Sidebar({
           ))}
         </div>
 
-        <div className="border-t border-gray-200 p-4 bg-gray-50">
-          <p className="text-xs text-gray-500 text-center">
-            Explore Transactional Analysis theory and practice
-          </p>
+        <div className="border-t border-gray-200 bg-white">
+          <button
+            onClick={onQuizOpen}
+            className="w-full px-4 py-3 flex items-center gap-3 hover:bg-teal-50 transition-colors text-left"
+          >
+            <FiAward className="w-5 h-5 text-teal-600 flex-shrink-0" />
+            <span className="text-sm font-semibold text-gray-900">Take a Quiz</span>
+          </button>
+          <div className="border-t border-gray-200 p-4 bg-gray-50">
+            <p className="text-xs text-gray-500 text-center">
+              Explore Transactional Analysis theory and practice
+            </p>
+          </div>
         </div>
       </aside>
     </>
